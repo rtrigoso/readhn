@@ -24,7 +24,7 @@ type Hn struct {
 	codes     []int
 }
 
-func (h Hn) getCodes() {
+func (h *Hn) getCodes() {
 	defer handleError()
 	codes, err := h.container.GetCodesStory()
 	if err != nil {
@@ -34,7 +34,7 @@ func (h Hn) getCodes() {
 	h.codes = codes
 }
 
-func (h Hn) getPosts() {
+func (h *Hn) getPosts() {
 	defer handleError()
 	posts, err := h.container.GetPostStory(h.codes)
 	if err != nil {
@@ -44,7 +44,7 @@ func (h Hn) getPosts() {
 	h.posts = posts
 }
 
-func (h Hn) New(st string, n int) error {
+func (h *Hn) New(st string, n int) error {
 	if st != TOP_STORIES && st != NEW_STORIES && st != BEST_STORIES {
 		return errors.New(fmt.Sprintf("%s is not a valid story type", st))
 	}
@@ -62,7 +62,7 @@ func (h Hn) New(st string, n int) error {
 	return nil
 }
 
-func (h Hn) ListArticles() (map[string]string, error) {
+func (h *Hn) ListArticles() (map[string]string, error) {
 	posts := make(map[string]string)
 	for _, p := range h.posts {
 		posts[p.Url] = p.Title
