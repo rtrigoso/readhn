@@ -6,10 +6,6 @@ import (
 	"os"
 )
 
-const (
-	hnbaseurl = "https://hacker-news.firebaseio.com/v0/"
-)
-
 var (
 	u = flag.Bool("u", false, "")
 	l = flag.Bool("l", false, "")
